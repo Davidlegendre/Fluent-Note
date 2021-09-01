@@ -1,0 +1,258 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"     
+        xmlns:local="clr-namespace:Fluent_Note"
+        xmlns:Wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf" 
+    xmlns:ControlzEx="clr-namespace:ControlzEx;assembly=MahApps.Metro" 
+    xmlns:handycontrol="https://handyorg.github.io/handycontrol"
+    x:Class="Fluent_Note.MainWindow"
+        mc:Ignorable="d"
+        Title="{Binding Text, ElementName=tile}" x:Name="window" Height="462" Width="726" BorderThickness="0" MinWidth="361" MinHeight="462" Icon="icono.ico" Background="{x:Null}" GotFocus="window_GotFocus" >
+    
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="1"/>
+    </WindowChrome.WindowChrome>
+    <Border x:Name="bor">
+        <Grid Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="1">
+                <Grid>
+                    <Rectangle x:Name="ThemeDL" Opacity="1"></Rectangle>
+                    <TextBox x:Name="textotext" Background="Transparent" Style="{DynamicResource TextBoxStyleHandy}" TextWrapping="{Binding textWrapping}" TextAlignment="{Binding TextAlig}" Text="{Binding Texto}"  FontFamily="{Binding FontFamily}" FontSize="{Binding FontSize}" FontStyle="{Binding FontStyle}" AcceptsReturn="True" ScrollViewer.HorizontalScrollBarVisibility="auto" CaretBrush="{Binding Foreground, ElementName=tile}" Foreground="{Binding Foreground, ElementName=tile}" BorderThickness="0" VerticalScrollBarVisibility="Auto" AcceptsTab="True" Padding="5" TextChanged="textotext_TextChanged" HorizontalScrollBarVisibility="Auto" KeyUp="textotext_KeyDown" ControlzEx:KeyboardNavigationEx.AlwaysShowFocusVisual="True" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" controls:ControlsHelper.FocusBorderBrush="Black" controls:ControlsHelper.MouseOverBorderBrush="White">
+                        <TextBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem
+                        Header="_Cortar"
+                        Command="Cut"/>
+
+                                <MenuItem
+                        Header="_Copiar"
+                        Command="Copy"/>
+
+                                <MenuItem
+                        Header="_Pegar"
+                        Command="Paste"/>
+                            </ContextMenu>
+                        </TextBox.ContextMenu>
+
+                    </TextBox>
+                </Grid>
+            </Border>
+            <Border x:Name="bordertitleup" >
+                <Grid >
+                    <Grid Background="{DynamicResource AccentColorBrush}" Opacity="{Binding ColorTop}"/>
+                    <DockPanel >
+                        <Grid DockPanel.Dock="Top" Height="30" ClipToBounds="True" SnapsToDevicePixels="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="48"/>
+                                <ColumnDefinition Width="48"/>
+                                <ColumnDefinition Width="48"/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Margin="9,7,1,3">
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="Square44x44Logo.altform-lightunplated_targetsize-32.png"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <TextBlock x:Name="tile" Grid.Column="1" Text="Fluent Menu" VerticalAlignment="Center" Foreground="Black" Padding="5"/>
+                            <controls:Tile x:Name="minibtn" controls:ToolTip="Minimizar" Width="auto" WindowChrome.IsHitTestVisibleInChrome="True" Grid.Column="2" Margin="0" Height="Auto" Background="{x:Null}">
+                                <Path Stretch="Fill" Fill="{Binding Foreground, ElementName=tile}" Margin="0,5,0,0" Data="M4.78125,38.390625L91.21875,38.390625 93.0703125,38.765625 94.59375,39.8203125 95.625,41.3671875 96,43.21875 95.625,45.0703125 94.59375,46.59375 93.0703125,47.625 91.21875,48 4.78125,48 2.9296875,47.625 1.40625,46.59375 0.375,45.0703125 0,43.21875 0.375,41.3671875 1.40625,39.8203125 2.9296875,38.765625 4.78125,38.390625z" Width="10" Height="1" SnapsToDevicePixels="True"/>
+                            </controls:Tile>
+                            <controls:Tile x:Name="maxibtn" controls:ToolTip="Maximizar o Normal" Background="Transparent" Style="{Binding Style, ElementName=minibtn}" WindowChrome.IsHitTestVisibleInChrome="True" Width="auto" Grid.Column="3" Margin="0" Height="Auto">
+                                <Path Stretch="Fill" Fill="{Binding Foreground, ElementName=tile}" Margin="0" Data="M14.390625,9.609375L12.5390625,9.984375 11.015625,11.015625 9.984375,12.5390625 9.609375,14.390625 9.609375,81.609375 9.984375,83.4609375 11.015625,84.984375 12.5390625,86.015625 14.390625,86.390625 81.609375,86.390625 83.4609375,86.015625 84.984375,84.984375 86.015625,83.4609375 86.390625,81.609375 86.390625,14.390625 86.015625,12.5390625 84.984375,11.015625 83.4609375,9.984375 81.609375,9.609375 14.390625,9.609375z M14.15625,0L81.84375,0 84.59765625,0.287109375 87.234375,1.1484375 89.654296875,2.49609375 91.7578125,4.2421875 93.50390625,6.345703125 94.8515625,8.765625 95.712890625,11.40234375 96,14.15625 96,81.84375 95.712890625,84.59765625 94.8515625,87.234375 93.50390625,89.654296875 91.7578125,91.7578125 89.654296875,93.50390625 87.234375,94.8515625 84.59765625,95.712890625 81.84375,96 14.15625,96 11.40234375,95.712890625 8.765625,94.8515625 6.34570264816284,93.50390625 4.2421875,91.7578125 2.49609375,89.654296875 1.1484375,87.234375 0.287109375,84.59765625 0,81.84375 0,14.15625 0.287109375,11.40234375 1.1484375,8.765625 2.49609375,6.345703125 4.2421875,4.2421875 6.34570264816284,2.49609375 8.765625,1.1484375 11.40234375,0.287109375 14.15625,0z" Width="10" Height="10" SnapsToDevicePixels="True"/>
+                            </controls:Tile>
+                            <controls:Tile x:Name="closebtn" controls:ToolTip="Cerrar" Style="{Binding Style, ElementName=minibtn}" WindowChrome.IsHitTestVisibleInChrome="True" Width="auto" Grid.Column="4" Background="Transparent" Margin="0" Height="Auto" SnapsToDevicePixels="True" TextOptions.TextFormattingMode="Display">
+                                <Path Stretch="Fill" Stroke="{Binding Foreground, ElementName=tile}" Fill="{Binding Foreground, ElementName=tile}" Margin="0,0,0,0" Data="M15,12L16.13671875,12.22265625 17.109375,12.890625 45,40.78125 72.890625,12.890625 73.86328125,12.22265625 75,12 76.13671875,12.22265625 77.109375,12.890625 77.77734375,13.86328125 78,15 77.77734375,16.13671875 77.109375,17.109375 49.21875,45 77.109375,72.890625 77.77734375,73.86328125 78,75 77.77734375,76.13671875 77.109375,77.109375 76.13671875,77.77734375 75,78 73.86328125,77.77734375 72.890625,77.109375 45,49.21875 17.109375,77.109375 16.13671875,77.77734375 15,78 13.8632802963257,77.77734375 12.890625,77.109375 12.22265625,76.13671875 12,75 12.22265625,73.86328125 12.890625,72.890625 40.78125,45 12.890625,17.109375 12.22265625,16.13671875 12,15 12.22265625,13.86328125 12.890625,12.890625 13.8632802963257,12.22265625 15,12z" Width="10" Height="10" SnapsToDevicePixels="True" StrokeThickness="0.3"/>
+                            </controls:Tile>
+                        </Grid>
+                        <Grid Height="48" Margin="5,5,5,5" VerticalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid x:Name="gridmore" Grid.Column="3" Height="auto" Width="45" Margin="3,0,0,0">
+                                <Popup x:Name="popmORE" VerticalOffset="5" HorizontalOffset="-162" StaysOpen="False" AllowsTransparency="True">
+                                    <Grid>
+                                        <controls:Flyout Position="Top" IsOpen="{Binding IsOpen, ElementName=popmORE}" Height="auto" CloseButtonVisibility="Collapsed" TitleVisibility="Collapsed" Margin="0" AnimateOpacity="True" Theme="Light" Background="{x:Null}" >
+                                            <Wpf:Card x:Name="menucard" Height="auto" UniformCornerRadius="4" Width="200" Margin="5" Wpf:ShadowAssist.ShadowDepth="Depth1" >
+                                                <StackPanel Orientation="Vertical">
+                                                    <controls:Tile x:Name="openFilebtn" Height="40" Margin="0" Background="Transparent" Width="auto" Style="{Binding Style, ElementName=minibtn}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="openFilebtn_Click" TextOptions.TextFormattingMode="Ideal">
+                                                        <Label FontSize="14" Content="Abrir archivo de texto" Foreground="{Binding Foreground, ElementName=textotext}" Padding="10,5" VerticalAlignment="Center" />
+                                                    </controls:Tile>
+                                                    <controls:Tile x:Name="Saveasbtn" FontFamily="{Binding FontFamily, ElementName=openFilebtn}" Visibility="Collapsed" Height="40" Margin="0" Background="Transparent" Width="auto" Style="{Binding Style, ElementName=minibtn}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" TextOptions.TextFormattingMode="Ideal">
+                                                        <Label FontSize="14" Content="Guardar como" Foreground="{Binding Foreground, ElementName=textotext}" Padding="10,5" VerticalAlignment="Center" />
+                                                    </controls:Tile>
+                                                    <controls:Tile  x:Name="CreatNewFileBTn" FontFamily="{Binding FontFamily, ElementName=openFilebtn}" Height="40" Margin="0" Background="Transparent" Width="auto" Style="{Binding Style, ElementName=minibtn}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Visibility="Collapsed" TextOptions.TextFormattingMode="Ideal">
+                                                        <Label FontSize="14" Content="Crear archivo nuevo" Foreground="{Binding Foreground, ElementName=textotext}" VerticalAlignment="Center" HorizontalAlignment="Stretch" Padding="10,5" />
+                                                    </controls:Tile>
+                                                    <controls:Tile x:Name="FontStybtn" FontFamily="{Binding FontFamily, ElementName=openFilebtn}" Height="40" Margin="0" Background="Transparent" Width="auto" Style="{Binding Style, ElementName=minibtn}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Visibility="Collapsed" TextOptions.TextFormattingMode="Ideal">
+                                                        <Label FontSize="14" Content="Formato del Texto" Foreground="{Binding Foreground, ElementName=textotext}" VerticalAlignment="Center" HorizontalAlignment="Stretch" Padding="10,5" />
+                                                    </controls:Tile>
+                                                    <controls:Tile x:Name="Styletextbtn" FontFamily="{Binding FontFamily, ElementName=openFilebtn}" Height="40" Margin="0" Background="Transparent" Width="auto" Style="{Binding Style, ElementName=minibtn}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Visibility="Collapsed" TextOptions.TextFormattingMode="Ideal">
+                                                        <Label FontSize="14" Content="Alineacion del Texto" Foreground="{Binding Foreground, ElementName=textotext}" VerticalAlignment="Center" HorizontalAlignment="Stretch" Padding="10,5" />
+                                                    </controls:Tile>
+                                                    <controls:Tile x:Name="Printbtn2" FontFamily="{Binding FontFamily, ElementName=openFilebtn}" Height="40" Margin="0" Background="Transparent" Width="auto" Style="{Binding Style, ElementName=minibtn}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Visibility="Collapsed" TextOptions.TextFormattingMode="Ideal">
+                                                        <Label FontSize="14" Content="Imprimir Texto" Foreground="{Binding Foreground, ElementName=textotext}" VerticalAlignment="Center" HorizontalAlignment="Stretch" Padding="10,5" />
+                                                    </controls:Tile>
+                                                    <controls:Tile x:Name="configbtn" FontFamily="{Binding FontFamily, ElementName=openFilebtn}" Height="40" Margin="0" Background="Transparent" Width="auto" Style="{Binding Style, ElementName=minibtn}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="configbtn_Click" TextOptions.TextFormattingMode="Ideal">
+                                                        <Label FontSize="14" Content="Configuraciones" Foreground="{Binding Foreground, ElementName=textotext}" VerticalAlignment="Center" HorizontalAlignment="Stretch" Padding="10,5" />
+                                                    </controls:Tile>
+                                                    <controls:Tile x:Name="Acercabtn" FontFamily="{Binding FontFamily, ElementName=openFilebtn}" Height="40" Margin="0" Background="Transparent" Width="auto" Style="{Binding Style, ElementName=minibtn}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="Acercabtn_Click" TextOptions.TextFormattingMode="Ideal">
+                                                        <Label FontSize="14" Content="Acerca de" Foreground="{Binding Foreground, ElementName=textotext}" HorizontalAlignment="Stretch" Padding="10,5" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+                                                    </controls:Tile>
+                                                </StackPanel>
+                                            </Wpf:Card>
+                                        </controls:Flyout>
+                                    </Grid>
+                                </Popup>
+                                <controls:Tile x:Name="morebtn" controls:ToolTip="Más Opciones"  DockPanel.Dock="Right" Height="auto" Width="39" Style="{Binding Style, ElementName=savebtn}" Background="{x:Null}">
+                                    <Path Margin="0" Height="3" Width="15" Data="M78,40.5L80.90625,41.109375 83.2734375,42.7265625 84.890625,45.09375 85.5,48 84.890625,50.90625 83.2734375,53.2734375 80.90625,54.890625 78,55.5 75.09375,54.890625 72.7265625,53.2734375 71.109375,50.90625 70.5,48 71.109375,45.09375 72.7265625,42.7265625 75.09375,41.109375 78,40.5z M48,40.5L50.90625,41.109375 53.2734375,42.7265625 54.890625,45.09375 55.5,48 54.890625,50.90625 53.2734375,53.2734375 50.90625,54.890625 48,55.5 45.09375,54.890625 42.7265625,53.2734375 41.109375,50.90625 40.5,48 41.109375,45.09375 42.7265625,42.7265625 45.09375,41.109375 48,40.5z M18,40.5L20.90625,41.109375 23.2734375,42.7265625 24.890625,45.09375 25.5,48 24.890625,50.90625 23.2734375,53.2734375 20.90625,54.890625 18,55.5 15.09375,54.890625 12.7265625,53.2734375 11.1093759536743,50.90625 10.5,48 11.1093759536743,45.09375 12.7265625,42.7265625 15.09375,41.109375 18,40.5z" Fill="{Binding Foreground, ElementName=tile}" SnapsToDevicePixels="True" StrokeThickness="0" Stretch="Fill"/>
+                                </controls:Tile>
+                            </Grid>
+
+
+                            <Grid x:Name="searchcontainer" Grid.Column="1" Margin="0,4" Height="auto" MaxWidth="340" VerticalAlignment="Center" HorizontalAlignment="Right" Width="340">
+                                <controls:Tile x:Name="searchbtn" controls:ToolTip="Buscar o Cambiar Palabras" Background="{Binding Background, ElementName=searchtext}" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="29" Style="{Binding Style, ElementName=savebtn}" Grid.Column="1" Height="auto" Margin="5" Click="searchbtn_Click" Panel.ZIndex="1">
+                                    <controls:MetroAnimatedTabControl x:Name="controloptionsearch" Background="{x:Null}" Margin="5">
+                                        <controls:MetroTabItem Visibility="Collapsed">
+                                            <Path x:Name="searchpath" Data="M57,12L51.5859336853027,12.533203125 46.5,14.1328125 41.89453125,16.646484375 37.921875,19.921875 34.646484375,23.89453125 32.1328125,28.5 30.5332012176514,33.5859375 30,39 30.5273418426514,44.4492225646973 32.109375,49.546875 34.60546875,54.15234375 37.875,58.125 41.84765625,61.39453125 46.453125,63.890625 51.5507774353027,65.47265625 57,66 62.44921875,65.47265625 67.546875,63.890625 72.15234375,61.39453125 76.125,58.125 79.39453125,54.15234375 81.890625,49.546875 83.47265625,44.4492225646973 84,39 83.466796875,33.5859375 81.8671875,28.5 79.353515625,23.89453125 76.078125,19.921875 72.10546875,16.646484375 67.5,14.1328125 62.4140625,12.533203125 57,12z M57,6L61.4648399353027,6.29296875 65.765625,7.17187547683716 69.849609375,8.58984375 73.6640625,10.5 77.173828125,12.8671875 80.34375,15.6562490463257 83.1328125,18.826171875 85.5,22.3359375 87.41015625,26.150390625 88.828125,30.234375 89.70703125,34.5351600646973 90,39 89.70703125,43.4648475646973 88.828125,47.765625 87.41015625,51.849609375 85.5,55.6640625 83.1328125,59.173828125 80.34375,62.34375 77.173828125,65.1328125 73.6640625,67.5 69.849609375,69.41015625 65.765625,70.828125 61.4648399353027,71.70703125 57,72 51.2753868103027,71.5078125 45.7265625,70.03125 40.529296875,67.62890625 35.859375,64.359375 11.1093759536743,89.109375 10.13671875,89.77734375 9,90 7.86328125,89.77734375 6.89062547683716,89.109375 6.22265625,88.13671875 6,87 6.22265625,85.86328125 6.89062547683716,84.890625 31.640625,60.140625 28.3710918426514,55.470703125 25.96875,50.2734375 24.4921875,44.7246131896973 24,39 24.29296875,34.5293006896973 25.171875,30.2109375 26.5898418426514,26.115234375 28.5,22.3125 30.8671855926514,18.8203125 33.65625,15.6562490463257 36.8203125,12.8671875 40.3125,10.5 44.109375,8.58984375 48.1875,7.17187547683716 52.4999961853027,6.29296875 57,6z" Stretch="Fill" Width="14" Height="14" Fill="{Binding Foreground,ElementName=tile}"/>
+                                        </controls:MetroTabItem>
+                                        <controls:MetroTabItem Visibility="Collapsed">
+                                            <Grid>
+                                                <Path Stretch="Fill" Width="16" Height="14" Fill="{Binding Foreground,ElementName=tile}" Data="M24.692665,3.2120342C24.948668,3.2100334,25.205421,3.3055334,25.401923,3.499033L32.004007,10.000024 25.401923,16.500015C25.206921,16.692014 24.952918,16.788014 24.699915,16.788014 24.441912,16.788014 24.182908,16.688015 23.987906,16.490015 23.599901,16.096015 23.6049,15.463016 23.997906,15.076017L28.13822,11 14.000001,11C13.448,11 13,10.552 13,10 13,9.4480004 13.448,9.0000005 14.000001,9.0000005L28.138173,9.0000005 23.997906,4.9240313C23.6049,4.5370321 23.599901,3.9040327 23.987906,3.5100336 24.181408,3.3135338 24.436661,3.2140341 24.692665,3.2120342z M9.9997897,0C14.231701,0 18.022621,2.6800003 19.431591,6.6690006 19.615587,7.1900005 19.342593,7.7610002 18.821604,7.9450002 18.299615,8.1300001 17.729627,7.8560004 17.545631,7.335 16.418655,4.1440001 13.385719,2 9.9997897,2 8.9198127,2 7.8728347,2.2110004 6.8858557,2.6280003 3.9179182,3.8839998 1.999958,6.7779999 1.999958,10 1.999958,14.411 5.5888824,18 9.9997897,18 13.372719,18 16.400655,15.867 17.535631,12.693 17.721627,12.173 18.296615,11.901 18.813604,12.088 19.333593,12.274 19.604588,12.846 19.418591,13.366 19.063849,14.358 18.561234,15.268625 17.940998,16.076563L17.789748,16.265986 26.711717,25.297987C27.100739,25.690969 27.096742,26.324008 26.70372,26.712015 26.508705,26.905012 26.254697,27.001022 26.000689,27.001022 25.742682,27.001022 25.484676,26.902021 25.28966,26.703989L16.385527,17.690085 16.359738,17.712146C14.605513,19.156461 12.370677,20 9.9997897,20 4.4859056,20 0,15.514 0,10 0,5.9730005 2.3969498,2.3559999 6.1068716,0.78600025 7.3418455,0.26399994 8.6508183,0 9.9997897,0z"/>
+                                            </Grid>
+                                        </controls:MetroTabItem>
+                                    </controls:MetroAnimatedTabControl>
+                                </controls:Tile>
+                                <Grid ClipToBounds="True" Margin="0,38,0,-40" Focusable="False">
+                                    <controls:Flyout x:Name="controlchangetexts" Background="Transparent" Position="Top" CloseButtonVisibility="Collapsed" TitleVisibility="Collapsed" Focusable="False" IsTabStop="False" Height="36" AllowFocusElement="False" Margin="0,6,0,0">
+                                        <Wpf:Card Style="{StaticResource CardStyle1}" VerticalAlignment="Stretch" UniformCornerRadius="5" Background="{Binding Background, ElementName=bordertitleup}">
+                                            <Grid>
+                                                <Grid Background="{DynamicResource AccentColorBrush}" Opacity="{Binding ColorTop}"/>
+                                                <controls:Tile x:Name="changetextbtn" Background="Transparent" Style="{Binding Style, ElementName=savebtn}" controls:ToolTip="Cambiar Textos" Margin="0" IsTabStop="False" Focusable="False" Width="Auto" Height="Auto" Click="changetextbtn_Click" VerticalTitleAlignment="Stretch">
+                                                    <Path Grid.Column="1" Stretch="Fill" Width="13" Height="13" Data="M69,12L70.13671875,12.22265625 71.109375,12.890625 71.77734375,13.86328125 72,15 72,73.734375 90.890625,54.890625 91.86328125,54.22265625 93,54 94.13671875,54.22265625 95.109375,54.890625 95.77734375,55.86328125 96,57 95.77734375,58.13671875 95.109375,59.109375 71.25,82.96875 70.2421875,83.7421875 69,84 67.7578125,83.7421875 66.75,82.96875 42.890625,59.109375 42.22265625,58.13671875 42,57 42.22265625,55.86328125 42.890625,54.890625 43.86328125,54.22265625 45,54 46.13671875,54.22265625 47.109375,54.890625 66,73.734375 66,15 66.22265625,13.86328125 66.890625,12.890625 67.86328125,12.22265625 69,12z M27,12L28.21875,12.2578125 29.25,13.03125 53.109375,36.890625 53.7773399353027,37.8632850646973 54,39 53.7773399353027,40.1367225646973 53.109375,41.109375 52.1367149353027,41.7773475646973 51,42 49.8632774353027,41.7773475646973 48.890625,41.109375 30,22.21875 30,81 29.7773418426514,82.13671875 29.109375,83.109375 28.1367168426514,83.77734375 27,84 25.8632793426514,83.77734375 24.890625,83.109375 24.22265625,82.13671875 24,81 24,22.21875 5.109375,41.109375 4.13671875,41.7773475646973 3,42 1.86328125,41.7773475646973 0.890625,41.109375 0.22265625,40.1367225646973 0,39 0.22265625,37.8632850646973 0.890625,36.890625 24.75,13.03125 25.78125,12.2578125 27,12z" Fill="{Binding Foreground, ElementName=tile}"/>
+                                                </controls:Tile>
+                                            </Grid>
+                                        </Wpf:Card>
+                                    </controls:Flyout>
+                                </Grid>
+                                <Border x:Name="searchborder" ClipToBounds="True" CornerRadius="4" Opacity="0.5" Height="38" Background="{Binding Fill, ElementName=ThemeDL}" BorderThickness="0" Margin="0">
+                                    <Border.BorderBrush>
+                                        <SolidColorBrush Color="#FF727272" Opacity="0.2"/>
+                                    </Border.BorderBrush>
+
+                                    <Grid>
+                                        <controls:MetroAnimatedTabControl Margin="0,0,40,0" SelectedIndex="{Binding SelectedIndex, ElementName=controloptionsearch}" controls:TabControlHelper.Transition="Left" Background="{x:Null}">
+                                            <controls:MetroTabItem Visibility="Collapsed">
+                                                <TextBox x:Name="searchtext" Width="{Binding ActualWidth,ElementName=searchcontainer}" Style="{StaticResource TextBoxStyle1}" CaretBrush="{Binding Foreground, ElementName=searchtext}" BorderBrush="{x:Null}" FontSize="16" Wpf:TextFieldAssist.Hint="Buscar" BorderThickness="0" VerticalContentAlignment="Center" Padding="10,0,5,0" Margin="0" SnapsToDevicePixels="True" GotFocus="searchtext_GotFocus" LostFocus="searchtext_LostFocus" TextOptions.TextFormattingMode="Display" KeyDown="searchtext_KeyDown" Foreground="{Binding Foreground,ElementName=tile}" HorizontalAlignment="Left" AutoWordSelection="True">
+                                                    <TextBox.ContextMenu>
+                                                        <ContextMenu>
+                                                            <MenuItem
+                        Header="_Cortar"
+                        Command="Cut"/>
+
+                                                            <MenuItem
+                        Header="_Copiar"
+                        Command="Copy"/>
+
+                                                            <MenuItem
+                        Header="_Pegar"
+                        Command="Paste"/>
+                                                        </ContextMenu>
+                                                    </TextBox.ContextMenu>
+                                                </TextBox>
+                                            </controls:MetroTabItem>
+                                            <controls:MetroTabItem Visibility="Collapsed">
+                                                <Grid HorizontalAlignment="Left" Width="{Binding ActualWidth,ElementName=searchcontainer}" >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50*"/>
+                                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                        <ColumnDefinition Width="50*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBox x:Name="oldtexttxt" Style="{StaticResource TextBoxStyle1}" CaretBrush="{Binding Foreground, ElementName=searchtext}" BorderBrush="#19FFFFFF" FontSize="16" Wpf:TextFieldAssist.Hint="Original" BorderThickness="0" VerticalContentAlignment="Center" Padding="5,0" Margin="0" SnapsToDevicePixels="True" GotFocus="searchtext_GotFocus" LostFocus="searchtext_LostFocus" TextOptions.TextFormattingMode="Display" Foreground="{Binding Foreground,ElementName=searchtext}" TextChanged="oldtexttxt_TextChanged" AutoWordSelection="True">
+                                                        <TextBox.ContextMenu>
+                                                            <ContextMenu>
+                                                                <MenuItem
+                        Header="_Cortar"
+                        Command="Cut"/>
+
+                                                                <MenuItem
+                        Header="_Copiar"
+                        Command="Copy"/>
+
+                                                                <MenuItem
+                        Header="_Pegar"
+                        Command="Paste"/>
+                                                            </ContextMenu>
+                                                        </TextBox.ContextMenu>
+                                                    </TextBox>
+                                                    <Rectangle Grid.Column="1" Opacity="0.5"  Fill="{Binding Foreground}" Width="2" RadiusX="2" RadiusY="2" Margin="0,10"/>
+                                                    <TextBox x:Name="newtexttxt" Grid.Column="2" Style="{StaticResource TextBoxStyle1}" CaretBrush="{Binding Foreground, ElementName=searchtext}" BorderBrush="#66F5F5F5" FontSize="16" Wpf:TextFieldAssist.Hint="Reemplazo" BorderThickness="0" VerticalContentAlignment="Center" Padding="5,0" Margin="0" SnapsToDevicePixels="True" GotFocus="searchtext_GotFocus" LostFocus="searchtext_LostFocus" TextOptions.TextFormattingMode="Display" Foreground="{Binding Foreground,ElementName=searchtext}" TextChanged="oldtexttxt_TextChanged" AutoWordSelection="True">
+                                                        <TextBox.ContextMenu>
+                                                            <ContextMenu>
+                                                                <MenuItem
+                        Header="_Cortar"
+                        Command="Cut"/>
+
+                                                                <MenuItem
+                        Header="_Copiar"
+                        Command="Copy"/>
+
+                                                                <MenuItem
+                        Header="_Pegar"
+                        Command="Paste"/>
+                                                            </ContextMenu>
+                                                        </TextBox.ContextMenu>
+                                                    </TextBox>
+                                                </Grid>
+                                            </controls:MetroTabItem>
+                                        </controls:MetroAnimatedTabControl>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <controls:Tile x:Name="savebtn" controls:ToolTip="Guardar" Height="auto" IsEnabled="False" Width="45" Style="{DynamicResource FluentStyle}" Background="{x:Null}" Opacity="0.25" Click="savebtn_Click">
+                                    <Path Fill="{Binding Foreground, ElementName=tile}" Margin="0" Height="16" Width="15" Data="M27,54L25.8632793426514,54.22265625 24.890625,54.890625 24.22265625,55.86328125 24,57 24,84 72,84 72,57 71.77734375,55.86328125 71.109375,54.890625 70.13671875,54.22265625 69,54 27,54z M30,12L30,27 30.2226543426514,28.13671875 30.890625,29.109375 31.86328125,29.77734375 33,30 57,30 58.1367149353027,29.77734375 59.109375,29.109375 59.7773399353027,28.13671875 60,27 60,12 30,12z M18,12L15.6562490463257,12.46875 13.7578125,13.7578125 12.46875,15.6562490463257 12,18 12,78 12.46875,80.3671875 13.7343759536743,82.265625 15.6328125,83.53125 18,84 18,57 18.703125,53.53125 20.6484375,50.6484375 23.53125,48.703125 27,48 69,48 72.46875,48.703125 75.3515625,50.6484375 77.296875,53.53125 78,57 78,84 80.34375,83.53125 82.2421875,82.2421875 83.53125,80.34375 84,78 84,30.75 83.56640625,28.41796875 82.265625,26.484375 69.515625,13.7343759536743 67.91015625,12.5859375 66,12.0468740463257 66,27 65.296875,30.46875 63.3515625,33.3515625 60.46875,35.296875 57,36 33,36 29.53125,35.296875 26.6484375,33.3515625 24.703125,30.46875 24,27 24,12 18,12z M17.765625,6L65.25,6 67.59375,6.228515625 69.84375,6.91406202316284 71.91796875,8.021484375 73.734375,9.515625 86.484375,22.265625 87.978515625,24.08203125 89.0859375,26.15625 89.771484375,28.40625 90,30.75 90,78 89.765625,80.337890625 89.0625,82.5703125 86.53125,86.390625 82.8046875,89.015625 80.595703125,89.75390625 78.234375,90 18,90 15.662109375,89.765625 13.4296875,89.0625 9.609375,86.53125 6.984375,82.8046875 6.24609375,80.595703125 6,78.234375 6,18 6.234375,15.662109375 6.9375,13.4296875 9.46875095367432,9.609375 13.1953115463257,6.984375 15.404296875,6.24609375 17.765625,6z" SnapsToDevicePixels="True" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill"/>
+                                </controls:Tile>
+                                <controls:Tile x:Name="saveAllbtn" controls:ToolTip="Guardar Como" Height="auto" IsEnabled="True" Width="45" Style="{Binding Style, ElementName=savebtn}" Background="{x:Null}" Opacity="1" Click="saveAllbtn_Click">
+                                    <Path Fill="{Binding Foreground, ElementName=tile}" Margin="0" Height="17" Width="16" Data="M70.734375,52.03125L86.203125,67.5 62.90625,90.796875 61.9921875,91.5 60.9375,91.921875 58.9921875,92.484375 55.9453125,93.3046875 52.3359375,94.21875 48.796875,95.0859375 45.9375,95.7421875 44.91796875,95.935546875 44.296875,96 42.8671875,95.3671875 42.234375,93.9375 42.298828125,93.3515625 42.4921875,92.34375 43.1484375,89.4375 44.015625,85.8515625 44.9296875,82.21875 45.75,79.1484375 46.078125,78.005859375 46.3125,77.25 47.4375,75.328125 70.734375,52.03125z M85.265625,42L87.4453125,42.2050819396973 89.484375,42.8203125 92.90625,45.09375 95.1796875,48.515625 95.794921875,50.5546875 96,52.734375 95.6953125,55.546875 94.8046875,57.9375 93.375,60.09375 91.5,62.203125 76.03125,46.734375 78.046875,44.765625 80.109375,43.265625 82.453125,42.328125 85.265625,42z M30,12L30,27 30.2226543426514,28.13671875 30.890625,29.109375 31.86328125,29.77734375 33,30 57,30 58.1367149353027,29.77734375 59.109375,29.109375 59.7773399353027,28.13671875 60,27 60,12 30,12z M17.765625,6L65.296875,6 67.640625,6.228515625 69.890625,6.91406202316284 71.96484375,8.021484375 73.78125,9.515625 86.484375,22.21875 88.359375,24.5859375 89.4140625,27.046875 89.8828125,29.71875 90,32.71875 90,35.109375 85.3125,34.5 84.6328125,34.5 84,34.546875 84.0234375,33.2578125 84.046875,31.96875 83.71875,29.0390625 83.19140625,27.685546875 82.265625,26.484375 69.515625,13.734375 67.91015625,12.5859375 66,12.046875 66,27 65.296875,30.46875 63.3515625,33.3515625 60.46875,35.296875 57,36 33,36 29.53125,35.296875 26.6484375,33.3515625 24.703125,30.46875 24,27 24,12 18,12 15.65625,12.4687509536743 13.7578125,13.7578125 12.4687509536743,15.65625 12,18 12,78 12.4687509536743,80.3671875 13.734375,82.265625 15.6328134536743,83.53125 18,84 18,57 18.703125,53.53125 20.6484375,50.6484375 23.53125,48.703125 27,48 64.171875,48 61.2421875,51.0234375 58.265625,54 27,54 25.8632793426514,54.22265625 24.890625,54.890625 24.22265625,55.86328125 24,57 24,84 36.890625,84 35.390625,90 17.765625,90 15.474609375,89.759765625 13.2890625,89.0390625 9.5390625,86.4609375 6.9609375,82.7109375 6.240234375,80.525390625 6,78.234375 6,17.765625 6.240234375,15.474609375 6.9609375,13.2890625 9.5390625,9.5390625 13.2890625,6.9609375 15.474609375,6.240234375 17.765625,6z" SnapsToDevicePixels="True" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill"/>
+                                </controls:Tile>
+                                <controls:Tile x:Name="NewFilebtn1" controls:ToolTip="Nuevo Txt" Height="auto" Width="45" Style="{Binding Style, ElementName=savebtn}" Background="{x:Null}">
+                                    <Path Margin="0" Height="18" Width="14" Data="M54,10.21875L54,24 54.46875,26.3671875 55.734375,28.265625 57.6328125,29.53125 60,30 73.78125,30 54,10.21875z M24,6L21.65625,6.46875 19.7578125,7.7578125 18.46875,9.65625 18,12 18,84 18.46875,86.3671875 19.734375,88.265625 21.6328125,89.53125 24,90 72,90 74.34375,89.53125 76.2421875,88.2421875 77.53125,86.34375 78,84 78,36.75 78,36.375 77.953125,36 60,36 57.5917930603027,35.7656288146973 55.3359375,35.0625 51.515625,32.484375 48.9375,28.6640625 48.234375,26.408203125 48,24 48,6.046875 47.625,6 47.25,6 24,6z M24,0L47.25,0 49.5937461853027,0.228515625 51.84375,0.9140625 53.9179649353027,2.021484375 55.734375,3.515625 80.484375,28.265625 81.978515625,30.08203125 83.0859375,32.15625 83.771484375,34.4062538146973 84,36.75 84,84 83.765625,86.408203125 83.0625,88.6640625 80.484375,92.484375 76.6640625,95.0625 74.408203125,95.765625 72,96 24,96 21.591796875,95.765625 19.3359375,95.0625 15.515625,92.484375 12.9375,88.6640625 12.234375,86.408203125 12,84 12,12 12.234375,9.591796875 12.9375,7.3359375 15.515625,3.515625 19.3359375,0.9375 21.591796875,0.234375 24,0z" Fill="{Binding Foreground, ElementName=tile}" SnapsToDevicePixels="True" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill"/>
+                                </controls:Tile>
+                                <controls:Tile x:Name="fontbtn" controls:ToolTip="Formato del Texto" Height="auto" Width="45" Style="{Binding Style, ElementName=savebtn}" Background="{x:Null}">
+                                    <Path Margin="0" Height="16" Width="18" Data="M57.9375,42.140625L50.015625,60 66.234375,60 57.9375,42.140625z M57.984375,30L61.828125,30 79.875,73.828125 81.3515625,77.25 82.96875,79.8046875 85.3125,81.3984375 86.9296875,81.802734375 88.96875,81.9375 88.96875,84 67.921875,84 67.921875,81.9375 69.6796875,81.9609375 71.484375,81.7734375 72.890625,81 73.453125,79.265625 73.1484375,77.4375 72.3984375,74.90625 71.4140625,72.1171875 70.3828125,69.421875 69.515625,67.2421875 69,66 48,66 47.4375,67.2890625 46.4765625,69.4453125 45.3515625,72.09375 44.2734375,74.8359375 43.4765625,77.34375 43.171875,79.21875 43.7578125,80.8828125 45.1875,81.6328125 46.9921875,81.8671875 48.703125,81.9375 48.703125,84 31.03125,84 31.03125,81.9375 33.0703125,81.48046875 34.59375,80.953125 36.65625,79.4296875 38.0625,77.015625 38.75390625,75.36328125 39.609375,73.3125 57.984375,30z M27,21.46875L20.15625,42 33.84375,42 27,21.46875z M23.859375,12L30.140625,12 42.703125,49.59375 38.90625,57.1875 35.859375,48 18.140625,48 14.1562509536743,60 7.828125,60 23.859375,12z" Fill="{Binding Foreground, ElementName=tile}" SnapsToDevicePixels="True" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill"/>
+                                </controls:Tile>
+                                <controls:Tile x:Name="styletextbtn1" controls:ToolTip="Alineacion del Texto" Height="auto" Width="45" Style="{Binding Style, ElementName=savebtn}" Background="{x:Null}" Click="styletextbtn1_Click">
+                                    <Path Margin="0" Height="16" Width="16" Data="M0,78L96,78 96,84 0,84 0,78z M0,60L72,60 72,66 0,66 0,60z M0,42L96,42 96,48 0,48 0,42z M0,24L72,24 72,30 0,30 0,24z M0,6L96,6 96,12 0,12 0,6z" Fill="{Binding Foreground, ElementName=tile}" SnapsToDevicePixels="True" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill">
+                                        <Path.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                                <SkewTransform/>
+                                                <RotateTransform/>
+                                                <TranslateTransform/>
+                                            </TransformGroup>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                </controls:Tile>
+                                <controls:Tile x:Name="printbtn" controls:ToolTip="Imprimir" Height="auto" Width="45" Style="{Binding Style, ElementName=savebtn}" Background="{x:Null}" Click="printbtn_Click">
+                                    <Path Margin="0" Height="18" Width="18" Data="M27,54L25.8632793426514,54.22265625 24.890625,54.890625 24.22265625,55.86328125 24,57 24,81 24.22265625,82.13671875 24.890625,83.109375 25.8632793426514,83.77734375 27,84 69,84 70.13671875,83.77734375 71.109375,83.109375 71.77734375,82.13671875 72,81 72,57 71.77734375,55.86328125 71.109375,54.890625 70.13671875,54.22265625 69,54 27,54z M15,24L11.484375,24.703125 8.625,26.625 6.703125,29.484375 6,33 6,63 6.22265625,64.13671875 6.890625,65.109375 7.86328125,65.77734375 9,66 18,66 18,57 18.703125,53.53125 20.6484375,50.6484375 23.53125,48.703125 27,48 69,48 72.46875,48.703125 75.3515625,50.6484375 77.296875,53.53125 78,57 78,66 87,66 88.13671875,65.77734375 89.109375,65.109375 89.77734375,64.13671875 90,63 90,33 89.296875,29.484375 87.375,26.625 84.515625,24.703125 81,24 15,24z M27,12L25.8632793426514,12.22265625 24.890625,12.890625 24.22265625,13.86328125 24,15 24,18 72,18 72,15 71.77734375,13.86328125 71.109375,12.890625 70.13671875,12.22265625 69,12 27,12z M27,6L69,6 72.515625,6.703125 75.375,8.625 77.296875,11.484375 78,15 78,18 81,18 84.005859375,18.29296875 86.8359375,19.171875 89.40234375,20.560546875 91.6171875,22.3828125 93.439453125,24.59765625 94.828125,27.1640625 95.70703125,29.994140625 96,33 96,63 95.3203125,66.4453125 93.375,69.375 90.4453125,71.3203125 87,72 78,72 78,81 77.296875,84.46875 75.3515625,87.3515625 72.46875,89.296875 69,90 27,90 23.53125,89.296875 20.6484375,87.3515625 18.703125,84.46875 18,81 18,72 9,72 5.5546875,71.3203125 2.625,69.375 0.6796875,66.4453125 0,63 0,33 0.29296875,29.994140625 1.171875,27.1640625 2.560546875,24.59765625 4.3828125,22.3828125 6.59765577316284,20.560546875 9.1640625,19.171875 11.994140625,18.29296875 15,18 18,18 18,15 18.703125,11.484375 20.625,8.625 23.484375,6.703125 27,6z" Fill="{Binding Foreground, ElementName=tile}" SnapsToDevicePixels="True" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill"/>
+                                </controls:Tile>
+                            </StackPanel>
+                        </Grid>
+                    </DockPanel>
+                </Grid>
+            </Border>
+            <Rectangle x:Name="protector" Grid.RowSpan="2" Fill="Transparent" Visibility="Collapsed" StrokeThickness="0" Margin="0,34,0,0" MouseDown="protector_MouseDown"/>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,247 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+    xmlns:local="clr-namespace:Fluent_Note"
+    x:Class="Fluent_Note.optionswindow"
+    x:Name="win"
+        mc:Ignorable="d" WindowStartupLocation="CenterOwner" ShowInTaskbar="False"  Background="{Binding Background}" MinWidth="303" Width="303" Margin="0" Height="517" ResizeMode="NoResize">
+   
+    <WindowChrome.WindowChrome>
+        <WindowChrome x:Name="chromewin" GlassFrameThickness="1"/>
+    </WindowChrome.WindowChrome>
+    <Grid VerticalAlignment="Stretch">
+        <Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid x:Name="topbar" Height="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="46"/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="title" FontFamily="Segoe UI Semibold" VerticalContentAlignment="Center" Background="Transparent" Foreground="{Binding Foreground}" Padding="7,5,5,5" Grid.Column="0" />
+                    <Custom:Tile x:Name="closebtn" Style="{StaticResource FluentStyle2}" WindowChrome.IsHitTestVisibleInChrome="True" Width="auto" Grid.Column="1" Background="Transparent" Margin="0" Height="Auto" SnapsToDevicePixels="True" TextOptions.TextFormattingMode="Display" Click="closebtn_Click">
+                        <Path  x:Name="closelabel" Stretch="Fill" Stroke="{Binding Foreground, ElementName=title}" Fill="{Binding Foreground, ElementName=title}" Margin="0,0,0,0" Data="M15,12L16.13671875,12.22265625 17.109375,12.890625 45,40.78125 72.890625,12.890625 73.86328125,12.22265625 75,12 76.13671875,12.22265625 77.109375,12.890625 77.77734375,13.86328125 78,15 77.77734375,16.13671875 77.109375,17.109375 49.21875,45 77.109375,72.890625 77.77734375,73.86328125 78,75 77.77734375,76.13671875 77.109375,77.109375 76.13671875,77.77734375 75,78 73.86328125,77.77734375 72.890625,77.109375 45,49.21875 17.109375,77.109375 16.13671875,77.77734375 15,78 13.8632802963257,77.77734375 12.890625,77.109375 12.22265625,76.13671875 12,75 12.22265625,73.86328125 12.890625,72.890625 40.78125,45 12.890625,17.109375 12.22265625,16.13671875 12,15 12.22265625,13.86328125 12.890625,12.890625 13.8632802963257,12.22265625 15,12z" Width="10" Height="10" SnapsToDevicePixels="True" StrokeThickness="0.3"/>
+                    </Custom:Tile>
+                </Grid>
+                <Custom:MetroAnimatedTabControl x:Name="controlselect" Margin="0" Grid.Row="1" Background="Transparent">
+                    <Custom:MetroTabItem Header="1" Visibility="Collapsed">
+                        <StackPanel Orientation="Vertical">
+                            <Border Height="auto" Width="auto" Margin="3" Background="Transparent">
+                                <StackPanel Margin="5">
+                                    <Label Content="Fuentes" Foreground="{Binding Foreground, ElementName=title}" FontSize="16" Margin="0"/>
+                                    <ComboBox x:Name="cambofont" ItemContainerStyle="{DynamicResource ComboBoxItemStyle1}" Style="{DynamicResource ComboBoxBaseStyle}" ItemsSource="{Binding ColeccionFontFamily}" Foreground="{Binding Foreground, ElementName=title}" Margin="5,5,5,10" FontSize="16" Wpf:TextFieldAssist.Hint="Fonts" SelectionChanged="cambofont_SelectionChanged" IsEditable="True" GotFocus="cambofont_GotFocus" LostFocus="cambofont_LostFocus"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Height="auto" Width="auto" Margin="3" Background="Transparent">
+                                <StackPanel Margin="5">
+                                    <Label Content="Tamaños" FontSize="16" Foreground="{Binding Foreground, ElementName=title}"/>
+                                    <ComboBox x:Name="tamcombo" Style="{DynamicResource ComboBoxBaseStyle}" Margin="5,5,5,10" SelectionChanged="cambofont_SelectionChanged" ItemsSource="{Binding ColeccionFontSize}" Foreground="{Binding Foreground, ElementName=title}" FontSize="16" Wpf:TextFieldAssist.Hint="Px" ItemContainerStyle="{DynamicResource ComboBoxItemStyle1}"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Height="auto" Width="auto" Margin="3" Background="Transparent">
+                                <StackPanel Margin="5">
+                                    <Label Content="Estilo de Fuente" FontSize="16" Foreground="{Binding Foreground, ElementName=title}"/>
+                                    <ComboBox x:Name="estilocombo" ItemContainerStyle="{DynamicResource ComboBoxItemStyle1}" Style="{DynamicResource ComboBoxBaseStyle}" Margin="5,5,5,10" SelectionChanged="cambofont_SelectionChanged" FontSize="16" ItemsSource="{Binding ColeccionFontStyle}" Foreground="{Binding Foreground, ElementName=title}" Wpf:TextFieldAssist.Hint="Font Style"/>
+                                </StackPanel>
+                            </Border>
+                            <Grid>
+                                <Custom:Tile x:Name="savebtn" Grid.Column="0" Background="{Binding Background, ElementName=cancelbtn}" Style="{Binding Style, ElementName=textLeftbtn}" Width="auto" Click="savebtn_Click" Margin="5,5,5,0" Height="45">
+                                    <Label Content="Guardar" Foreground="{Binding Foreground, ElementName=title}" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                                </Custom:Tile>
+                            </Grid>
+                        </StackPanel>
+                    </Custom:MetroTabItem>
+                    <Custom:MetroTabItem Visibility="Collapsed">
+                        <Grid HorizontalAlignment="Center">
+                            <WrapPanel  x:Name="listate">
+                                <Custom:Tile x:Name="textLeftbtn" >
+                                    <Custom:Tile.Background>
+                                        <SolidColorBrush Color="#FF119EDA" Opacity="0.8"/>
+                                    </Custom:Tile.Background>
+                                    <Grid>
+                                        <TextBlock Grid.Row="1" Foreground="{Binding Foreground, ElementName=title}" Text="Texto a la Izquierda" VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,48,0,0" Padding="2.5,0"/>
+                                        <Path Margin="0,-20,0,0" Height="38" Width="38" Data="M0,78L96,78 96,84 0,84 0,78z M0,60L72,60 72,66 0,66 0,60z M0,42L96,42 96,48 0,48 0,42z M0,24L72,24 72,30 0,30 0,24z M0,6L96,6 96,12 0,12 0,6z" SnapsToDevicePixels="True" StrokeThickness="0" Stretch="Fill" Fill="{Binding Foreground, ElementName=title}"/>
+                                    </Grid>
+                                </Custom:Tile>
+                                <Custom:Tile x:Name="Centerbtn" Style="{Binding Style, ElementName=textLeftbtn}" Background="{x:Null}">
+                                    <Grid>
+                                        <TextBlock Grid.Row="1" Foreground="{Binding Foreground, ElementName=title}" Text="Texto Centrado" VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,48,0,0" Padding="2.5,0"/>
+                                        <Path Height="38" Width="38" Data="M0,78L96,78 96,84 0,84 0,78z M12,60L84,60 84,66 12,66 12,60z M0,42L96,42 96,48 0,48 0,42z M12,24L84,24 84,30 12,30 12,24z M0,6L96,6 96,12 0,12 0,6z" Stretch="Fill" Fill="{Binding Foreground, ElementName=title}" Margin="0,-20,0,0"/>
+                                    </Grid>
+                                </Custom:Tile>
+                                <Custom:Tile x:Name="Rightbtn" Style="{Binding Style, ElementName=textLeftbtn}" Background="{x:Null}">
+                                    <Grid>
+                                        <TextBlock Grid.Row="1" Foreground="{Binding Foreground, ElementName=title}" Text="Texto a la Derecha" VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,48,0,0" Padding="2.5,0"/>
+                                        <Path Height="38" Width="38" Data="M0,78L96,78 96,84 0,84 0,78z M24,60L96,60 96,66 24,66 24,60z M0,42L96,42 96,48 0,48 0,42z M24,24L96,24 96,30 24,30 24,24z M0,6L96,6 96,12 0,12 0,6z" Stretch="Fill" Fill="{Binding Foreground, ElementName=title}" Margin="0,-20,0,0"/>
+                                    </Grid>
+                                </Custom:Tile>
+                                <Custom:Tile x:Name="Justifybtn" Style="{Binding Style, ElementName=textLeftbtn}" Background="{x:Null}">
+                                    <Grid>
+                                        <TextBlock Grid.Row="1" Foreground="{Binding Foreground, ElementName=title}" Text="Texto Justificado" VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,48,0,0" Padding="2.5,0"/>
+                                        <Path Height="38" Width="38" Data="M0,27.535011L32,27.535011 32,30.566002 0,30.566002z M0,20.300001L32,20.300001 32,23.330007 0,23.330007z M0,13.511997L32,13.511997 32,16.542003 0,16.542003z M0,6.7539995L32,6.7539995 32,9.7839993 0,9.7839993z M0,0L32,0 32,3.0299998 0,3.0299998z" Stretch="Fill" Fill="{Binding Foreground, ElementName=title}" Margin="0,-20,0,0"/>
+                                    </Grid>
+                                </Custom:Tile>
+                            </WrapPanel>
+
+                            <StackPanel VerticalAlignment="Bottom" Margin="10,0,0,10">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label VerticalAlignment="Bottom" Content="Quiero que el Texto esté Ajustado"/>
+
+                                    <ToggleButton x:Name="AjusteToggle" Click="AjusteToggle_Checked" Margin="10 0 0 0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Custom:MetroTabItem>
+                    <Custom:MetroTabItem Visibility="Collapsed">
+                        <ItemsControl>
+                            <Label Content="Tema" Margin="10,0" FontSize="14" Foreground="{Binding Foreground, ElementName=title}"/>
+                            <Rectangle Height="2" RadiusX="1" RadiusY="1" Opacity="0.1" Fill="{Binding Foreground,ElementName=title}" Margin="15,0,15,10"></Rectangle>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Custom:Tile x:Name="ligthbtn" Style="{Binding Style, ElementName=textLeftbtn}" Height="120" Width="120" Background="{x:Null}" Click="ligthbtn_Click">
+                                    <Grid>
+                                        <TextBlock Grid.Row="1" FontFamily="Segoe UI Semibold" Foreground="{Binding Foreground, ElementName=title}" Text="Tema Light" VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,48,0,0" Padding="2.5,0"/>
+                                        <Path Height="38" Width="38" Data="M48,84L49.1367149353027,84.22265625 50.109375,84.890625 50.7773399353027,85.86328125 51,87 51,93 50.7773399353027,94.13671875 50.109375,95.109375 49.1367149353027,95.77734375 48,96 46.86328125,95.77734375 45.890625,95.109375 45.22265625,94.13671875 45,93 45,87 45.22265625,85.86328125 45.890625,84.890625 46.86328125,84.22265625 48,84z M75,72L76.13671875,72.22265625 77.109375,72.890625 83.109375,78.890625 83.77734375,79.86328125 84,81 83.77734375,82.13671875 83.109375,83.109375 82.13671875,83.77734375 81,84 79.86328125,83.77734375 78.890625,83.109375 72.890625,77.109375 72.22265625,76.13671875 72,75 72.22265625,73.86328125 72.890625,72.890625 73.86328125,72.22265625 75,72z M21,72L22.13671875,72.22265625 23.109375,72.890625 23.77734375,73.86328125 24,75 23.77734375,76.13671875 23.109375,77.109375 17.109375,83.109375 16.13671875,83.77734375 15,84 13.8632802963257,83.77734375 12.890625,83.109375 12.22265625,82.13671875 12,81 12.22265625,79.86328125 12.890625,78.890625 18.890625,72.890625 19.86328125,72.22265625 21,72z M87,45L93,45 94.13671875,45.2226600646973 95.109375,45.890625 95.77734375,46.8632850646973 96,48 95.77734375,49.13671875 95.109375,50.109375 94.13671875,50.77734375 93,51 87,51 85.86328125,50.77734375 84.890625,50.109375 84.22265625,49.13671875 84,48 84.22265625,46.8632850646973 84.890625,45.890625 85.86328125,45.2226600646973 87,45z M3,45L9,45 10.13671875,45.2226600646973 11.109375,45.890625 11.77734375,46.8632850646973 12,48 11.77734375,49.13671875 11.109375,50.109375 10.13671875,50.77734375 9,51 3,51 1.86328125,50.77734375 0.890625,50.109375 0.22265625,49.13671875 0,48 0.22265625,46.8632850646973 0.890625,45.890625 1.86328125,45.2226600646973 3,45z M48,30L44.3671875,30.3515625 40.96875,31.40625 37.8984375,33.0703163146973 35.25,35.25 33.0703125,37.8984413146973 31.40625,40.96875 30.3515605926514,44.3671913146973 30,48 30.3515605926514,51.6328125 31.40625,55.03125 33.0703125,58.1015625 35.25,60.75 37.8984375,62.9296875 40.96875,64.59375 44.3671875,65.6484375 48,66 51.6328086853027,65.6484375 55.03125,64.59375 58.1015586853027,62.9296875 60.75,60.75 62.9296836853027,58.1015625 64.59375,55.03125 65.6484375,51.6328125 66,48 66,47.625 65.63671875,44.0800819396973 64.546875,40.7578125 62.8359336853027,37.7519569396973 60.609375,35.15625 57.9316368103027,33.0175819396973 54.8671875,31.3828125 51.5214805603027,30.345703125 48,30z M48,24L52.8222618103027,24.46875 57.3515625,25.875 61.4531211853027,28.095703125 64.9921875,31.0078125 67.904296875,34.5468788146973 70.125,38.6484375 71.53125,43.1777381896973 72,48 71.53125,52.822265625 70.125,57.3515625 67.904296875,61.453125 64.9921875,64.9921875 61.4531211853027,67.904296875 57.3515625,70.125 52.8222618103027,71.53125 48,72 43.177734375,71.53125 38.6484375,70.125 34.546875,67.904296875 31.0078125,64.9921875 28.0957012176514,61.453125 25.875,57.3515625 24.46875,52.822265625 24,48 24,47.53125 24.486328125,42.8027381896973 25.9453125,38.3671875 28.2304668426514,34.3535194396973 31.1953125,30.890625 34.7578125,28.037109375 38.8359375,25.8515625 43.294921875,24.462890625 48,24z M81,12L82.13671875,12.22265625 83.109375,12.890625 83.77734375,13.86328125 84,15 83.77734375,16.13671875 83.109375,17.109375 77.109375,23.109375 76.13671875,23.77734375 75,24 73.86328125,23.77734375 72.890625,23.109375 72.22265625,22.13671875 72,21 72.22265625,19.86328125 72.890625,18.890625 78.890625,12.890625 79.86328125,12.22265625 81,12z M15,12L16.13671875,12.22265625 17.109375,12.890625 23.109375,18.890625 23.77734375,19.86328125 24,21 23.77734375,22.13671875 23.109375,23.109375 22.13671875,23.77734375 21,24 19.86328125,23.77734375 18.890625,23.109375 12.890625,17.109375 12.22265625,16.13671875 12,15 12.22265625,13.86328125 12.890625,12.890625 13.8632802963257,12.22265625 15,12z M48,0L49.1367149353027,0.22265625 50.109375,0.890625 50.7773399353027,1.86328125 51,3 51,9 50.7773399353027,10.13671875 50.109375,11.109375 49.1367149353027,11.77734375 48,12 46.86328125,11.77734375 45.890625,11.109375 45.22265625,10.13671875 45,9 45,3 45.22265625,1.86328125 45.890625,0.890625 46.86328125,0.22265625 48,0z" Stretch="Fill" Fill="{Binding Foreground, ElementName=title}" Margin="0,-20,0,0"/>
+                                    </Grid>
+                                </Custom:Tile>
+                                <Custom:Tile x:Name="darkbtn" Style="{Binding Style, ElementName=textLeftbtn}" Background="{x:Null}" Height="120" Width="120" Click="darkbtn_Click">
+                                    <Grid>
+                                        <TextBlock Grid.Row="1" FontFamily="Segoe UI Semibold" Text="Tema Dark" Foreground="{Binding Foreground, ElementName=title}" VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,48,0,0" Padding="2.5,0"/>
+                                        <Path Height="36" Width="36" Data="M53.15625,6.51562547683716L54.4453125,14.3203125 54.9375,22.21875 54.5449180603027,28.93359375 53.3671875,35.484375 51.3925743103027,41.8359413146973 48.609375,47.953125 45.66796875,52.822265625 42.28125,57.1171875 38.501953125,60.9140625 34.3828125,64.2890625 25.1953125,69.890625 15.046875,74.34375 18.181640625,77.84765625 21.6796875,80.953125 25.4882793426514,83.630859375 29.5546875,85.8515625 33.84375,87.603515625 38.3203125,88.875 42.931640625,89.6484375 47.625,89.90625 53.2910118103027,89.53125 58.7578125,88.40625 63.94921875,86.607421875 68.7890625,84.2109375 73.2421875,81.234375 77.2734375,77.6953125 80.82421875,73.669921875 83.8359375,69.234375 86.267578125,64.412109375 88.078125,59.2265625 89.203125,53.759765625 89.578125,48.09375 89.267578125,42.9257850646973 88.3359375,37.921875 86.82421875,33.12890625 84.7734375,28.59375 82.212890625,24.3515625 79.171875,20.4375 75.697265625,16.91015625 71.8359375,13.828125 67.6171875,11.208984375 63.0703125,9.0703125 58.2363243103027,7.482421875 53.15625,6.51562547683716z M50.0625,0.234375L55.5703125,0.726562559604645 61.1953125,2.0625 66.6328125,4.078125 71.625,6.5625 76.916015625,10.107421875 81.6328125,14.2734365463257 85.728515625,18.97265625 89.15625,24.1171875 91.892578125,29.666015625 93.9140625,35.578125 95.162109375,41.7539100646973 95.578125,48.09375 95.150390625,54.580078125 93.8671875,60.8203125 91.798828125,66.73828125 89.015625,72.2578125 85.5703125,77.337890625 81.515625,81.9375 76.91015625,85.986328125 71.8125,89.4140625 66.275390625,92.1796875 60.3515625,94.2421875 54.1113243103027,95.525390625 47.625,95.953125 42.005859375,95.595703125 36.3046875,94.5234375 30.69140625,92.783203125 25.3359375,90.421875 20.30859375,87.45703125 15.6796875,83.90625 11.607421875,79.81640625 8.25,75.234375 7.64062452316284,73.171875 8.2734375,71.0859375 9.98437595367432,69.796875 12.7968740463257,68.6484375 15.6562509536743,67.640625 23.6953125,63.9375 31.171875,59.203125 35.314453125,55.67578125 38.9296875,51.75 41.994140625,47.4726600646973 44.484375,42.890625 46.41796875,38.0390663146973 47.8125,32.953125 48.6562461853027,27.6796875 48.9375,22.265625 48.234375,13.3828125 46.59375,4.64062547683716 46.5234375,4.21875 46.5,3.79687428474426 46.7578125,2.4140625 47.53125,1.26562476158142 48.6796836853027,0.492187470197678 50.0625,0.234375z" Stretch="Fill" Fill="{Binding Foreground, ElementName=title}" Margin="0,-20,0,0"/>
+                                    </Grid>
+                                </Custom:Tile>
+                            </StackPanel>
+                            <Label Content="Colores" Margin="10,5,10,0" FontSize="14" Foreground="{Binding Foreground, ElementName=title}" Padding="5" />
+                            <Rectangle Height="2" RadiusX="1" RadiusY="1" Opacity="0.1" Fill="{Binding Foreground,ElementName=title}" Margin="15,0,15,10"></Rectangle>
+                            <WrapPanel HorizontalAlignment="Center" Background="Transparent" Margin="0,0,0,10">
+                                <!--colores:“Red”, “Green”, “Blue”, “Purple”, “Orange”, “Lime”, “Emerald”, “Teal”, “Cyan”, “Cobalt”, “Indigo”, “Violet”, “Pink”, “Magenta”, “Crimson”, “Amber”, “Yellow”, “Brown”, “Olive”, “Steel”, “Mauve”, “Taupe”, “Sienna”-->
+                                <Custom:Tile x:Name="colorbtn" Style="{Binding Style, ElementName=darkbtn}" Content="Red" Height="38" Width="38" Background="#CCE51400" Foreground="{x:Null}" Click="colorbtn_Click"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Green" Height="38" Width="38" Background="#CC60A917" Foreground="{x:Null}" Click="colorbtn_Click"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Blue" Height="38" Width="38" Background="#CC119EDA" Foreground="{x:Null}" Click="colorbtn_Click"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Purple" Height="38" Width="38" Background="#CC6459DF" Foreground="{x:Null}" Click="colorbtn_Click"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Orange" Height="38" Width="38" Background="#CCFA6800" Foreground="{x:Null}" Click="colorbtn_Click"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Lime" Height="38" Width="38" Background="#CCA4C400" Click="colorbtn_Click" Foreground="{x:Null}"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Emerald" Height="38" Width="38" Background="#CC008A00" Click="colorbtn_Click" Foreground="{x:Null}"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Teal" Height="38" Width="38" Background="#CC00ABA9" Click="colorbtn_Click" Foreground="{x:Null}"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Cyan" Height="38" Width="38" Background="#CC1BA1E2" Click="colorbtn_Click" Foreground="{x:Null}"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Cobalt" Height="38" Width="38" Background="#CC0050EF" Click="colorbtn_Click" Foreground="{x:Null}"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Indigo" Height="38" Width="38" Background="#CC6A00FF" Click="colorbtn_Click" Foreground="{x:Null}"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Violet" Height="38" Width="38" Background="#CCAA00FF" Click="colorbtn_Click" Foreground="{x:Null}"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Pink" Height="38" Width="38" Background="#CCF472D0" Click="colorbtn_Click" Foreground="{x:Null}"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Magenta" Height="38" Width="38" Background="#CCD80073" Click="colorbtn_Click" Foreground="{x:Null}"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Crimson" Height="38" Width="38" Background="#CCA20025" Click="colorbtn_Click" Foreground="{x:Null}"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Amber" Height="38" Width="38" Background="#CCF0A30A" Click="colorbtn_Click" Foreground="{x:Null}"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Yellow" Height="38" Width="38" Background="#CCFEDE06" Click="colorbtn_Click" Foreground="{x:Null}"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Brown" Height="38" Width="38" Background="#CC825A2C" Click="colorbtn_Click" Foreground="{x:Null}"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Olive" Height="38" Width="38" Background="#CC6D8764" Click="colorbtn_Click" Foreground="{x:Null}"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Steel" Height="38" Width="38" Background="#CC647687" Click="colorbtn_Click" Foreground="{x:Null}"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Mauve" Height="38" Width="38" Background="#CC76608A" Click="colorbtn_Click" Foreground="{x:Null}"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Taupe" Height="38" Width="38" Background="#CC87794E" Click="colorbtn_Click" Foreground="{x:Null}"/>
+                                <Custom:Tile Style="{Binding Style, ElementName=colorbtn}" Content="Sienna" Height="38" Width="38" Background="#CCA0522D" Click="colorbtn_Click" Foreground="{x:Null}"/>
+                            </WrapPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Poner el color en la parte superior" Margin="10,5,0,5" FontSize="14" Foreground="{Binding Foreground, ElementName=title}" BorderThickness="0"/>
+                                <ToggleButton x:Name="Colortoptgg" Width="55" Height="30" Click="Colortoptgg_Click_1"/>
+                            </StackPanel>
+                        </ItemsControl>
+                    </Custom:MetroTabItem>
+                    <Custom:MetroTabItem Visibility="Collapsed">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*"/>
+                                <ColumnDefinition Width="60*"/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Height="100" Width="100" Wpf:ShadowAssist.ShadowDepth="Depth3">
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="icono.ico"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <StackPanel Grid.Column="1" Margin="0,14">
+                                <Label Content="Fluent Note 7.2" FontFamily="Segoe UI Semibold" FontSize="16" Foreground="{Binding Foreground, ElementName=title}"/>
+                                <Label Content="D.F.L.A. CORPORATION" Opacity="0.7" FontSize="14" Foreground="{Binding Foreground, ElementName=title}"/>
+                                <Grid Height="40" HorizontalAlignment="Left">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="40"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Custom:Tile x:Name="facebtn" Background="{Binding Background, ElementName=cancelbtn}" Margin="3" Height="auto" Width="auto" Style="{Binding Style, ElementName=darkbtn}" Click="facebtn_Click">
+                                        <Image Margin="5" Source="icons8-facebook-circled-48.png"/>
+                                    </Custom:Tile>
+                                    <Custom:Tile x:Name="twitbtn" Background="{Binding Background, ElementName=cancelbtn}" Grid.Column="1" Margin="3" Height="auto" Width="auto" Style="{Binding Style, ElementName=darkbtn}" Click="twitbtn_Click">
+                                        <Image Margin="5" Source="icons8-telegram-app-48.png"/>
+                                    </Custom:Tile>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </Custom:MetroTabItem>
+                    <Custom:MetroTabItem Visibility="Collapsed">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Vertical" Margin="10">
+                                <Label x:Name="TituloMensaje" FontSize="18" FontFamily="Segoe UI Semibold" Foreground="{Binding Foreground, ElementName=title}"/>
+                                <TextBlock x:Name="ContentidoMensaje" Margin="5,0" TextWrapping="Wrap" FontSize="16" FontFamily="Segoe UI" Foreground="{Binding Foreground, ElementName=title}"><Run Text="Contenido"/></TextBlock>
+                            </StackPanel>
+                            <Grid Grid.Row="1">
+                                <Grid x:Name="navigationbutton"  Margin="10" Visibility="{Binding Visibility, ElementName=cancelbutton}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50*"/>
+                                        <ColumnDefinition Width="50*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Custom:Tile x:Name="backbtn" FontFamily="Segoe UI Semibold" Click="atras_click" Grid.Column="0" Margin="3" Height="auto" Width="auto" Style="{Binding Style, ElementName=darkbtn}" Background="#33838383">
+                                        <Label Margin="10,0" HorizontalContentAlignment="Center" Foreground="{Binding Foreground, ElementName=title}" FontSize="14" Content="Atras"/>
+                                    </Custom:Tile>
+                                    <Custom:Tile x:Name="nextbtn" FontFamily="{Binding FontFamily, ElementName=backbtn}" Click="adelante_click" Grid.Column="1" Margin="3" Height="auto" Width="auto" Style="{Binding Style, ElementName=darkbtn}" Background="#33838383">
+                                        <Label Margin="10,0" HorizontalContentAlignment="Center" Foreground="{Binding Foreground, ElementName=title}" FontSize="14" Content="Adelante"/>
+                                    </Custom:Tile>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="2" x:Name="opcionbg" Background="#33808080">
+                                <WrapPanel x:Name="NormalOpcion" Margin="10" HorizontalAlignment="Right">
+                                    <Custom:Tile x:Name="cancelbtn" FontFamily="{Binding FontFamily, ElementName=backbtn}" Click="cancelbtn_Click" Grid.Column="1" Margin="3" Height="auto" Width="auto" Style="{Binding Style, ElementName=darkbtn}" Background="#33838383">
+                                        <Label Margin="10,0"  Foreground="{Binding Foreground, ElementName=title}" FontSize="14" Content="Aceptar"/>
+                                    </Custom:Tile>
+                                </WrapPanel>
+                                <WrapPanel x:Name="YesCancelOpcion" Margin="10" HorizontalAlignment="Right">
+                                    <Custom:Tile x:Name="yesbtn" FontFamily="{Binding FontFamily, ElementName=backbtn}" Click="yesbtn_Click" Background="{DynamicResource AccentColorBrush}" Grid.Column="1" Margin="3" Height="auto" Width="auto" Style="{Binding Style, ElementName=darkbtn}" RenderTransformOrigin="0.5,0.5">
+                                        <Label Margin="10,0" Foreground="{Binding Foreground, ElementName=title}" FontSize="14" Content="Si" RenderTransformOrigin="0.5,0.5">
+                                           
+                                        </Label>
+                                    </Custom:Tile>
+                                    <Custom:Tile Click="cancelbtn_Click" FontFamily="{Binding FontFamily, ElementName=backbtn}" Grid.Column="1" Margin="3" Height="auto" Width="auto" Background="{Binding Background, ElementName=cancelbtn}" Style="{Binding Style, ElementName=darkbtn}">
+                                        <Label Margin="10,0"  Foreground="{Binding Foreground, ElementName=title}" FontSize="14" Content="Cancelar"/>
+                                    </Custom:Tile>
+                                </WrapPanel>
+                                <WrapPanel x:Name="YesNoOpcion" Margin="10" HorizontalAlignment="Right">
+                                    <Custom:Tile Click="yesbtn_Click" FontFamily="{Binding FontFamily, ElementName=backbtn}" Background="{Binding Background, ElementName=yesbtn}" Grid.Column="1" Margin="3" Height="auto" Width="auto" Style="{Binding Style, ElementName=darkbtn}">
+                                        <Label Margin="10,0" Foreground="{Binding Foreground, ElementName=title}" FontSize="14" Content="Si"/>
+                                    </Custom:Tile>
+                                    <Custom:Tile x:Name="Nobtn" FontFamily="{Binding FontFamily, ElementName=backbtn}" Click="Nobtn_Click" Background="{Binding Background, ElementName=cancelbtn}" Grid.Column="1" Margin="3" Height="auto" Width="auto" Style="{Binding Style, ElementName=darkbtn}">
+                                        <Label Margin="10,0" Foreground="{Binding Foreground, ElementName=title}" FontSize="14" Content="No"/>
+                                    </Custom:Tile>
+                                    <Custom:Tile FontFamily="{Binding FontFamily, ElementName=backbtn}" Background="{Binding Background, ElementName=cancelbtn}" Click="cancelbtn_Click" Grid.Column="1" Margin="3" Height="auto" Width="auto" Style="{Binding Style, ElementName=darkbtn}" >
+                                        <Label Margin="10,0"  Foreground="{Binding Foreground, ElementName=title}" FontSize="14" Content="Cancelar"/>
+                                    </Custom:Tile>
+                                </WrapPanel>
+                                <WrapPanel x:Name="cancelbutton" Margin="10" HorizontalAlignment="Right" >
+                                    <Custom:Tile FontFamily="{Binding FontFamily, ElementName=backbtn}" Background="{Binding Background, ElementName=cancelbtn}" Click="cancelbtn_Click" Grid.Column="1" Margin="3" Height="auto" Width="auto" Style="{Binding Style, ElementName=darkbtn}" >
+                                        <Label Margin="10,0"  Foreground="{Binding Foreground, ElementName=title}" FontSize="14" Content="Cerrar"/>
+                                    </Custom:Tile>
+                                </WrapPanel>
+                            </Grid>
+                        </Grid>
+                    </Custom:MetroTabItem>
+                </Custom:MetroAnimatedTabControl>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
